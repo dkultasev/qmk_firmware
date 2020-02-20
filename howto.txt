@@ -1,0 +1,5 @@
+MSYK:
+cd /c/Users/dkult/OneDrive/home/keyboard/repo
+# make git-submodule
+make ergodone:dkultasev
+./hid_bootloader_cli -mmcu=atmega32u4 ergodone_dkultasev.hex
