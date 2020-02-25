@@ -4,12 +4,15 @@
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
+#define TIMEPAYMENT 3 // key maps for Timepayment strings
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
   EPRM,
   VRSN,
-  RGB_SLD
+  RGB_SLD,
+  QMKBEST = SAFE_RANGE
+
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -18,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,--------------------------------------------------.           ,--------------------------------------------------.
  * |   =    |   1  |   2  |   3  |   4  |   5  |MEH+Z |           |  Grv |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
- * | Tab-+    |   Q  |   W  |   E  |   R  |   T  |  [   |           |  ]   |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * | Tab    |   Q  |   W  |   E  |   R  |   T  |  [   |           |  ]   |   Y  |   U  |   I  |   O  |   P  |   \    |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | Del    |   A  |   S  |   D  |   F  |   G  |------|           |------|   H  |   J  |   K  |   L  |; / L2|' / Cmd |
  * |--------+------+------+------+------+------|Ctrl+Grv|         | Meh  |------+------+------+------+------+--------|
@@ -156,6 +159,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+          case QMKBEST:
+      if (record->event.pressed) {
+        // when keycode QMKBEST is pressed
+        SEND_STRING("QMK is the best thing ever!");
+      } else {
+        // when keycode QMKBEST is released
+      }
+      break;
+
     case RGB_SLD:
       if (record->event.pressed) {
         #ifdef RGBLIGHT_ENABLE
